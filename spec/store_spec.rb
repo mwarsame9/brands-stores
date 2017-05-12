@@ -7,4 +7,15 @@ describe(Store) do
       name = Store.new({:name => ""})
       expect(name.save()).to(eq(false))
     end
+
+  it("ensures store names are unique") do
+      name1 = Brand.new(name: "Footlocker")
+      name2 = Brand.new(name: "Footlocker")
+      expect(name2.save()).to(eq(false))
+    end
+
+  it("capitalizes the store name before creating") do
+      name = Store.create(name: "footlocker")
+      expect(name.capitalize).to(eq("Footlocker"))
+    end
 end
