@@ -5,6 +5,8 @@ require('pry')
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get("/") do
+  @brands = Brand.all()
+  @stores = Store.all()
   erb(:index)
 end
 
@@ -22,13 +24,13 @@ post("/brands") do
   name = params.fetch("brand_name")
   price = params.fetch("brand_price")
   Brand.create({:name => name, :price => price})
-  redirect("/brands")
+  redirect("/")
 end
 
 post("/stores") do
   name = params.fetch("store_name")
   Store.create({:name => name})
-  redirect("/stores")
+  redirect("/")
 end
 
 get("/brands/:id") do
@@ -70,7 +72,7 @@ delete('/delete_store/:id') do
   @store = Store.find(params.fetch('id'))
   @store.delete
   @stores = Store.all()
-  erb(:stores)
+  redirect("/")
 end
 
 patch('/rename_brand/:id') do
@@ -85,5 +87,5 @@ delete('/delete_brand/:id') do
   @brand = Brand.find(params.fetch('id'))
   @brand.delete
   @brands = Brand.all()
-  erb(:brands)
+  redirect("/")
 end

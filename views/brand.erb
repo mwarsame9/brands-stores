@@ -32,10 +32,12 @@
 </form>
 
 
+<hr><br>
+
+
 <form action="/rename_brand/<%= @brand.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
   <input id="brand" name="brand" type="text">
-  <br><br>
   <button type="submit" class="btn btn-success">Update Brand Name</button>
 </form>
 <br>
