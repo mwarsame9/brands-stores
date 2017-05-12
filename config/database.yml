@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: brands_stores_development
+test:
+  adapter: postgresql
+  database:  brands_stores_test
