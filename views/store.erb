@@ -30,3 +30,19 @@
   </select>
   <button type="submit">Submit</button>
 </form>
+
+
+<hr><br>
+
+<form action="/rename_store/<%= @store.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input id="store" name="store" type="text">
+  <br><br>
+  <button type="submit" class="btn btn-success">Update Store Name</button>
+</form>
+<br>
+
+<form action="/delete_store/<%= @store.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit" class="btn btn-danger">Delete Store</button>
+</form>

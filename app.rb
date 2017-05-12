@@ -55,3 +55,34 @@ patch("/stores/:id") do
   @store.brands.push(brand)
   redirect back
 end
+
+
+patch('/rename_store/:id') do
+  name = params.fetch("store")
+  @store = Store.find(params.fetch("id"))
+  @store.update({name: name})
+  @brands = Brand.all()
+  erb(:store)
+end
+
+delete('/delete_store/:id') do
+  @store = Store.find(params.fetch('id'))
+  @store.delete
+  @stores = Store.all()
+  erb(:stores)
+end
+
+patch('/rename_brand/:id') do
+  name = params.fetch("brand")
+  @brand = Brand.find(params.fetch("id"))
+  @brand.update({name: name})
+  @stores = Store.all()
+  erb(:brand)
+end
+
+delete('/delete_brand/:id') do
+  @brand = Brand.find(params.fetch('id'))
+  @brand.delete
+  @brands = Brand.all()
+  erb(:brands)
+end
